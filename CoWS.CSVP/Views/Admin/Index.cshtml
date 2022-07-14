@@ -1,0 +1,206 @@
+﻿@using System.Xml.Linq
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/CoWS/admin.js"></script>
+}
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>@ViewBag.Title</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnSave")
+                .HtmlAttributes(new { tabindex = -1, type = "button", style = "width:90px" })
+                .Content(content: "Save")
+                .Events(events => events.Click("btnSave_onClick"))
+            )
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnCancel")
+                .HtmlAttributes(new { tabindex = -1, type = "button", style = "width:90px" })
+                .Content(content: "Cancel")
+                .Events(events => events.Click("btnCancel_onClick"))
+            )
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divTabStrip">
+                @(Html.Kendo().TabStrip()
+                .Name("tsConfig")
+                .HtmlAttributes(new { style = "width:680px;" })
+                .Items(tabstrip =>
+                    {
+                        tabstrip.Add().Text("General")
+                                .Selected(true)
+                                .Content(@<text>
+                                            <div id="divGeneralSettingsTab" style="display:inline-block; height: 300px">
+                                                <div style="height:45px; margin-top:10px">
+                                                    <label class="lblRightAlign">Bank Number:</label>
+                                                    @(Html.Kendo().TextBox()
+                                                        .Name(componentName: "txtBankNumber")
+                                                        .HtmlAttributes(new { style = "width: 62px; display:inline-block; text-align:right", @maxlength = "4" })                                                        
+                                                    )
+                                                </div>
+                                                <div style="height:45px">
+                                                    <label class="lblRightAlign">*Child Support Description:</label>
+                                                    @(Html.Kendo().TextBox()
+                                                        .Name(componentName: "txtChildSupportDesc")
+                                                        .HtmlAttributes(new { style = "width: 400px; display:inline-block", @maxlength = "80" })
+                                                    )
+                                                </div>
+                                                <div style="height:45px">
+                                                    <label class="lblRightAlign">*Cyborg File Path:</label>
+                                                    @(Html.Kendo().TextBox()
+                                                        .Name(componentName: "txtFilePath")
+                                                        .HtmlAttributes(new { style = "width: 400px; display:inline-block", @maxlength = "50" })
+                                                    )
+                                                </div>
+                                                <div style="height:45px">
+                                                    <label class="lblRightAlign">User Code:</label>
+                                                    @(Html.Kendo().TextBox()
+                                                        .Name(componentName: "txtUserCode")
+                                                        .HtmlAttributes(new { style = "width: 62px; display:inline-block; text-align:right", @maxlength = "3" })
+                                                    )
+                                                </div>
+                                                <div style="height:45px">
+                                                    <label class="lblRightAlign">*Vouchers Payable Description:</label>
+                                                    @(Html.Kendo().TextBox()
+                                                        .Name(componentName: "txtVouchersPayableDesc")
+                                                        .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                    )
+                                                </div>
+                                                <div style="height:45px">
+                                                    <label class="lblRightAlign">*Temporary Password:</label>
+                                                    @(Html.Kendo().MaskedTextBox()
+                                                        .Name(componentName: "txtTempPassword")
+                                                        .HtmlAttributes(new { style = "width: 200px; display:inline-block; text-align:left", type = "password" })
+                                                    )
+                                                    <span toggle="txtTempPassword" class="k-icon k-i-lock toggle-password" style="cursor:pointer"></span>
+                                                </div>
+                                                <br />
+                                                <div style="font-style:italic">
+                                                    *Required field. For non-required fields, the information from the data file will be used.
+                                                </div>
+                                                <label id="gsID" hidden="hidden"></label>
+                                            </div>@*divGeneralSettingsTab*@
+                                        </text>);
+                        tabstrip.Add().Text("Web Service")
+                                .Content(@<text>
+                                                <div id="divWebSettingsTab" style="display:inline-block; height: 430px">
+                                                    <div style="height:45px; margin-top:10px">
+                                                        <label class="lblRightAlign">*FMS User:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtFMSUser")
+                                                            .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                        )
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*FMS Password1:</label>
+                                                        @(Html.Kendo().MaskedTextBox()
+                                                            .Name(componentName: "txtFMSPassword1")
+                                                            .HtmlAttributes(new { style = "width: 380px; display:inline-block", type = "password" })
+                                                        )
+                                                        <span toggle="txtFMSPassword1" class="k-icon k-i-lock toggle-password" style="cursor:pointer"></span>
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">FMS Password2:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtFMSPassword2")
+                                                            .HtmlAttributes(new { style = "width: 380px; display:inline-block", type = "password" })
+                                                        )
+                                                        <span toggle="txtFMSPassword2" class="k-icon k-i-lock toggle-password" style="cursor:pointer"></span>
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">FMS Password3:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtFMSPassword3")
+                                                            .HtmlAttributes(new { style = "width: 380px; display:inline-block", type = "password" })
+                                                        )
+                                                        <span toggle="txtFMSPassword3" class="k-icon k-i-lock toggle-password" style="cursor:pointer"></span>
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*AP Ledger:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtLedger")
+                                                            .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                        )
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*OS User:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtOSUser")
+                                                            .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                        )
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*OS Password:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtOSPassword")
+                                                            .HtmlAttributes(new { style = "width: 380px; display:inline-block", type = "password" })
+                                                        )
+                                                        <span toggle="txtOSPassword" class="k-icon k-i-lock toggle-password" style="cursor:pointer"></span>
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*Output Device:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtOutputDevice")
+                                                            .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                        )
+                                                    </div>
+                                                    <div style="height:45px;">
+                                                        <label class="lblRightAlign">*Web Service Address:</label>
+                                                        @(Html.Kendo().TextBox()
+                                                            .Name(componentName: "txtWebServiceAddress")
+                                                            .HtmlAttributes(new { style = "width: 400px; display:inline-block" })
+                                                        )
+                                                    </div>
+                                                    <br />
+                                                    <div style="font-style:italic">
+                                                        *Required field. For non-required fields, the information from the data file will be used.
+                                                    </div>
+                                                    <label id="wsID" hidden="hidden"></label>
+                                                </div>@*divWebSettingsTab*@
+                                        </text>);
+                    })
+                )
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label id="lblStatus" class="lblStatus"></label>
+        </td>
+    </tr>
+</table>
+<script>
+    $(document).ready(function () {
+
+        $(window).bind('beforeunload', function () {
+            if (generalSettingsChanged || webSettingsChanged) {
+                return 'CHANGES HAVE NOT BEEN SAVED!';
+            }
+        });
+
+    });
+
+    var generalSettingsChanged = false;
+    var webSettingsChanged = false;
+
+    $('#divGeneralSettingsTab').on('keyup change paste', ':input', function(){
+        generalSettingsChanged = true;
+    });
+
+     $('#divWebSettingsTab').on('keyup change paste', ':input', function(){
+        webSettingsChanged = true;
+    });
+
+</script>
+

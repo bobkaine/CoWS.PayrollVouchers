@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/CoWS/reports.js"></script>
+}
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>@ViewBag.Title</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divExportButton" style="text-align:left">
+                @(Html.Kendo().Button()
+                    .Name(componentName: "btnExport")
+                    .HtmlAttributes(new { tabindex = -1, type = "button", style = "width:90px" })
+                    .Content(content: "Export")
+                    .Events(ev => ev.Click(handler: "btnExport_onClick"))
+                )
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divReportDate" style="text-align:left; display: inline-block">
+                <label class="lblRightAlign125">Start Date:</label>
+                @(Html.Kendo().DatePicker()
+                    .Name(componentName: "dpReportDate")
+                    .HtmlAttributes(new { style = "width:150px;" })
+                    .Animation(true)
+                    .Format("yyyy-MM-dd")
+                    //.Events(events => events.Change("dpReportDate_onChange"))
+                )
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                <div id="divReportType" style="height:45px; width:450px;">
+                    <label class="lblRightAlign125">Report Type:</label>
+                    @(Html.Kendo().DropDownList()
+                        .Name(componentName: "ddlReportTypes")
+                        .HtmlAttributes(new { style = "width:275px; display:inline-block" })
+                        .DataTextField("Text")
+                        .DataValueField("Value")
+                        .BindTo(new List<SelectListItem>() {
+                                    new SelectListItem() {
+                                        Text = "Child Support",
+                                        Value = "1"
+                                    },
+                                    new SelectListItem() {
+                                        Text = "Vouchers Payable",
+                                        Value = "2"
+                                    },
+                                    new SelectListItem() {
+                                        Text = "Payroll",
+                                        Value = "3"
+                                    }
+                                })
+                        .Value("1")
+                        .Events(events => events.Change("ddlReportTypes_onChange"))
+                    )
+                </div>                
+                <div id="divReportName" style="height:45px; width:450px">
+                    <label class="lblRightAlign125">Report Name:</label>
+                    @(Html.Kendo().DropDownList()
+                        .Name(componentName: "ddlReportNames")
+                        .HtmlAttributes(new { style = "width:275px; display:inline-block" })
+                        .DataTextField("Text")
+                        .DataValueField("Value")
+                        .Height(300)
+                        .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action(actionName: "GetReports", controllerName: "Reports")
+                                    .Data("filterReports");
+                            }).ServerFiltering(true);
+                        })
+                        .CascadeFrom("ddlReportTypes")
+                        .Events(e => e.Change("ddlReportNames_onChange"))
+                    )
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divExportType" style="height:45px; width:450px;">
+                <label class="lblRightAlign125">Export Format:</label>
+                @(Html.Kendo().DropDownList()
+                    .Name(componentName: "ddlExportType")
+                    .HtmlAttributes(new { style = "width:275px; display:inline-block" })
+                    .DataTextField("Text")
+                    .DataValueField("Value")
+                    .BindTo(new List<SelectListItem>() {
+                                new SelectListItem() {
+                                    Text = "Portable Document Format (.pdf)",
+                                    Value = "5"
+                                },
+                                new SelectListItem() {
+                                    Text = "Microsoft Word (.doc)",
+                                    Value = "3"
+                                },
+                                new SelectListItem()
+                                {
+                                    Text = "Microsoft Excel Workbook (.xlsx)",
+                                    Value = "15"
+                                }
+                        })
+                    .Value("5")
+                )
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<script>
+
+    $(document).ready(function () {
+        $("#dpReportDate").attr("readonly", true);
+    });
+
+    function generateReport(reportName, reportParams){
+        var url = '@Url.Action("GenerateReport", "Reports")?ReportName=' + reportName +
+                                                        '&ReportParams=' + JSON.stringify(reportParams) +
+                                                        '&ExportFormat=' + $("#ddlExportType").val();
+        window.location.href = url;
+    }
+
+</script>

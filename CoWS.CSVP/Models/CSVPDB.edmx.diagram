@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee1c9c07915947549221122ba48340fe" Name="Diagram1">
+        <EntityTypeShape EntityType="CSVPDBModel.tblTransactionDetail" Width="1.875" PointX="6.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSVPDBModel.AspNetRole" Width="1.5" PointX="9.375" PointY="2.5" />
+        <EntityTypeShape EntityType="CSVPDBModel.AspNetUserClaim" Width="1.5" PointX="13.875" PointY="3.625" />
+        <EntityTypeShape EntityType="CSVPDBModel.AspNetUserLogin" Width="1.5" PointX="13.875" PointY="1" />
+        <EntityTypeShape EntityType="CSVPDBModel.AspNetUser" Width="1.5" PointX="11.625" PointY="1.375" />
+        <AssociationConnector Association="CSVPDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CSVPDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CSVPDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblWebServiceSetting" Width="1.5" PointX="7.625" PointY="6.125" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblDocumentNumber" Width="1.875" PointX="3.5" PointY="0.5" />
+        <AssociationConnector Association="CSVPDBModel.FK_tblTransactionDetail_tblDocumentNumber" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblDocumentNumberAudit" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblGeneralSetting" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblTransactionDetailAudit" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblBatchHeader" Width="1.5" PointX="0.875" PointY="0.5" />
+        <AssociationConnector Association="CSVPDBModel.FK_tblDocumentNumber_tblBatchHeader" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblBatchHeaderAudit" Width="1.5" PointX="0.875" PointY="5.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblGLTransactionDetail" Width="1.5" PointX="13" PointY="7.125" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblGLTransactionDetailAudit" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblGeneralLedger" Width="1.5" PointX="10.75" PointY="7" />
+        <AssociationConnector Association="CSVPDBModel.FK_tblGLTransactionDetail_tblGeneralLedger" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblGeneralLedgerAudit" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CSVPDBModel.tblSoapXML" Width="1.5" PointX="10.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

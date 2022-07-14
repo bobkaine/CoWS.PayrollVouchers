@@ -1,0 +1,61 @@
+﻿@model CoWS.PayrollVouchers.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Create New User";
+}
+
+@section Scripts {
+    <script src="~/Scripts/CoWS/security.js"></script>
+}
+
+<h2>@ViewBag.Title</h2>
+<p class="col-md-10 k-text-success">@ViewBag.SuccessMessage</p>
+<p class="col-md-10 k-text-error">@ViewBag.ErrorMessage</p>
+@using (Html.BeginForm("CreateNewUser", "Security", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "k-textbox", style = "display:inline-block" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger", style = "display:inline-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.LastName, new { @class = "k-textbox", style = "display:inline-block" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger", style = "display:inline-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Email, new { @class = "k-textbox", style = "display:inline-block" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "display:inline-block" })
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">User Role</label>
+        <div class="col-md-10">
+            @(Html.Kendo().MultiSelectFor(model => model.UserRoles)
+            .Name(componentName: "UserRoles")
+            .HtmlAttributes(new { @class = "k-multiselect", style = "width: 400px;" })
+            .AutoClose(false)
+            .DataTextField("Name")
+            .DataValueField("Name")
+            .DataSource(dataSource => dataSource
+                .Read(read => read.Action(actionName: "GetUserRoles", controllerName: "Security"))
+            )
+            )
+            @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="btnCreateUser" type="submit" class="k-button" value="Create User" />
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")

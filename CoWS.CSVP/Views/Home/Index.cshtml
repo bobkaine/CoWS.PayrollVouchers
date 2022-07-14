@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="placeholders">
+    <div class="row d-flex justify-content-start">
+        <div class="col-md-3">
+            <h2>Child Support</h2>
+            <p>
+                Process Child Support Checks...
+            </p>
+            <p>
+                @(Html.Kendo().Button()
+                   .Name(componentName: "btnChildSupport")
+                   .HtmlAttributes(new { tabindex = -1, type = "button", style = "height:100px; width:200px" })
+                   .Content(content: "Child Support")
+                   .Events(events => events.Click("btnChildSupport_onClick"))
+                )
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>Vouchers Payable</h2>
+            <p>
+                Process Vouchers Payable...
+            </p>
+            <p>
+                @(Html.Kendo().Button()
+                   .Name(componentName: "btnVouchersPayable")
+                   .HtmlAttributes(new { tabindex = -1, type = "button", style = "height:100px; width:200px" })
+                   .Content(content: "Vouchers Payable")
+                   .Events(events => events.Click("btnVouchersPayable_onClick"))
+                )
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>Payroll Review</h2>
+            <p>
+                Review Payroll...
+            </p>
+            <p>
+                @(Html.Kendo().Button()
+                   .Name(componentName: "btnPayroll")
+                   .HtmlAttributes(new { tabindex = -1, type = "button", style = "height:100px; width:200px" })
+                   .Content(content: "Payroll Review")
+                   .Events(events => events.Click("btnPayroll_onClick"))
+                )
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function btnChildSupport_onClick() {
+        location.href = '@Url.Action("Index", "ChildSupport")';
+    }
+
+    function btnVouchersPayable_onClick() {
+        location.href = '@Url.Action("Index", "VouchersPayable")';
+    }
+
+    function btnPayroll_onClick() {
+        location.href = '@Url.Action("Index", "Payroll")';
+    }
+
+</script>

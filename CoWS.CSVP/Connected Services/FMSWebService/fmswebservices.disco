@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://dev2.cityofws.org/fmswebservices/fmswebservices.asmx?wsdl" docRef="http://dev2.cityofws.org/fmswebservices/fmswebservices.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://dev2.cityofws.org/fmswebservices/fmswebservices.asmx" xmlns:q1="http://www.MitchellHumphrey.com/FMSServices" binding="q1:FMSWebServicesSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://dev2.cityofws.org/fmswebservices/fmswebservices.asmx" xmlns:q2="http://www.MitchellHumphrey.com/FMSServices" binding="q2:FMSWebServicesSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

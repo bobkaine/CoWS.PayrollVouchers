@@ -1,0 +1,1682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4F2A8DB5-885C-489B-BAC5-CADB682D8432}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoWS.PayrollVouchers</RootNamespace>
+    <AssemblyName>CoWS.PayrollVouchers</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Kendo.Mvc, Version=2019.3.917.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\Kendo.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Web.Spreadsheet, Version=2019.2.917.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Web.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip.Extensions, Version=2019.3.903.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2019.3.917.545\spreadsheet\binaries\net40\Telerik.Windows.Zip.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Connected Services\FMSWebServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FMSWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PayrollController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VouchersPayableController.cs" />
+    <Compile Include="Controllers\ChildSupportController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSVPDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSVPDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSVPDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSVPDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSVPDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\tblBatchHeader.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBatchHeaderAudit.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblDocumentNumber.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblDocumentNumberAudit.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGeneralLedger.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGeneralLedgerAudit.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGeneralSetting.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGLTransactionDetail.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGLTransactionDetailAudit.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSoapXML.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTransactionDetail.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTransactionDetailAudit.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblWebServiceSetting.cs">
+      <DependentUpon>CSVPDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\ReportParameter.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\BatchViewModel.cs" />
+    <Compile Include="ViewModels\BHDNTDViewModel.cs" />
+    <Compile Include="ViewModels\DocumentNumberViewModel.cs" />
+    <Compile Include="ViewModels\GeneralLedgerViewModel.cs" />
+    <Compile Include="ViewModels\GeneralSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GLTDViewModel.cs" />
+    <Compile Include="ViewModels\GLTransactionDetailViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\SoapViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\WebServiceSettingsViewModel.cs" />
+    <Compile Include="ViewModels\TransactionDetailViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AAuthStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ActualsBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddCustomerArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddFieldCodeArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddFieldCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddVendorArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AddVendorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.APBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARAddItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARAddItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARItemAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARItemModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARModifyItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ARModifyItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ArrayOfInt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AuthorizeAcctArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.AuthorizeAcctResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.BatchInquireArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.BatchInquireResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.BatchInquiryStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.BudgetMBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.BudgetSBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateActualsBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateActualsBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateAPBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateAPBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateARBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateARBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateBudgetMBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateBudgetMBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateBudgetSBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreateBudgetSBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreatePOBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CreatePOBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustEIDeleteCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustEIGetCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustEISendErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerExternalInterfaceDeleteRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerExternalInterfaceGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerExternalInterfaceRetrieveKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerExternalInterfaceSetErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.CustomerModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DocumentExternalInterfaceDeleteRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DocumentExternalInterfaceGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DocumentExternalInterfaceRetrieveKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DocumentExternalInterfaceSetErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DynamicTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.DynamicTableUtilityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.EIDocDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.EIDocErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.EIDocGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.FieldCodeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.FundsCheckArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.FundsCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.FundsCheckStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ModifyCustomerArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ModifyCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ModifyVendorArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.ModifyVendorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POAddItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POAddItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POItemAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POItemModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POModifyItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.POModifyItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.VendorAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebServices\CoWS.CSVP.FMSWebServices.VendorModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\FMSWebServices\fmswebservices.disco" />
+    <None Include="Connected Services\FMSWebServices\configuration91.svcinfo" />
+    <None Include="Connected Services\FMSWebServices\configuration.svcinfo" />
+    <None Include="Connected Services\FMSWebServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AAuthStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ActualsBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddCustomerArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddFieldCodeArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddFieldCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddVendorArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AddVendorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.APBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARAddItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARAddItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARItemAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARItemModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARModifyItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ARModifyItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ArrayOfInt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AuthorizeAcctArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.AuthorizeAcctResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.BatchInquireArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.BatchInquireResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.BatchInquiryStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.BudgetMBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.BudgetSBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateActualsBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateActualsBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateAPBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateAPBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateARBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateARBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateBudgetMBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateBudgetMBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateBudgetSBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreateBudgetSBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreatePOBatchArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CreatePOBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustEIDeleteCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustEIGetCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustEISendErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerExternalInterfaceDeleteRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerExternalInterfaceGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerExternalInterfaceRetrieveKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerExternalInterfaceSetErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.CustomerModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DocumentExternalInterfaceDeleteRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DocumentExternalInterfaceGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DocumentExternalInterfaceRetrieveKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DocumentExternalInterfaceSetErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DynamicTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.DynamicTableUtilityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.EIDocDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.EIDocErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.EIDocGetRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.FieldCodeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.FundsCheckArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.FundsCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.FundsCheckStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ModifyCustomerArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ModifyCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ModifyVendorArray1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.ModifyVendorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POAddItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POAddItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POBatchStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POItemAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POItemModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POModifyItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.POModifyItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.VendorAddStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FMSWebService\CoWS.CSVP.FMSWebService.VendorModifyStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\FMSWebServices\fmswebservices.wsdl" />
+    <None Include="Connected Services\FMSWebService\fmswebservices.disco" />
+    <None Include="Connected Services\FMSWebService\configuration91.svcinfo" />
+    <None Include="Connected Services\FMSWebService\configuration.svcinfo" />
+    <None Include="Connected Services\FMSWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\kendo\2019.3.917\Black\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Black\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Black\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\BlueOpal\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Default\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Default\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Fiori\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Flat\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Flat\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\WebComponentsIcons.svg" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\HighContrast\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\images\back.png" />
+    <Content Include="Content\kendo\2019.3.917\images\kendoui.svg" />
+    <Content Include="Content\kendo\2019.3.917\images\wp8_icons.png" />
+    <Content Include="Content\kendo\2019.3.917\images\wp8_inverseicons.png" />
+    <Content Include="Content\kendo\2019.3.917\kendo.black.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.black.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.blueopal.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.blueopal.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap-v4.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-fiori.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-material.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-nova.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-office365.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.black.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.blueopal.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.bootstrap.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.default.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.fiori.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.flat.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.highcontrast.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.material.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.materialblack.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.metro.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.metroblack.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.moonlight.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.nova.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.office365.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.silver.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.uniform.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default-v2.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.fiori.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.fiori.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.flat.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.flat.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.highcontrast.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.highcontrast.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material-v2.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.materialblack.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.materialblack.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metro.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metro.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metroblack.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metroblack.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.all.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.android.dark.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.android.light.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.blackberry.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.common.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.fiori.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.flat.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.ios.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.material.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.meego.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.nova.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.office365.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.wp8.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.moonlight.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.moonlight.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.nova.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.nova.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.office365.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.office365.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.rtl.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.silver.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.silver.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.uniform.min.css" />
+    <Content Include="Content\kendo\2019.3.917\kendo.uniform.mobile.min.css" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\MaterialBlack\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Material\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Material\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\MetroBlack\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Metro\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Metro\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Moonlight\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Nova\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Nova\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Office365\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Office365\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Silver\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Silver\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\brushed-metal.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots1.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots10.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots11.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots12.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots13.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots2.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots3.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots4.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots5.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots6.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots7.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots8.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\dots9.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\glass-lighter.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\glass.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\highlight.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\hsv-gradient.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\hue.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\image-default.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\leather1.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\leather2.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\noise.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe1.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe2.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe3.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe4.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe5.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\stripe6.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\transparency.png" />
+    <Content Include="Content\kendo\2019.3.917\textures\transtexture.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\editor.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\imagebrowser.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\indeterminate.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\loading-image.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\loading.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\loading_2x.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\markers.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\markers_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\slider-h.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\slider-v.gif" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\sprite.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\sprite_2x.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\sprite_kpi.png" />
+    <Content Include="Content\kendo\2019.3.917\Uniform\sprite_kpi_2x.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\CSVPDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CSVPDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CSVPDB.edmx.diagram">
+      <DependentUpon>CSVPDB.edmx</DependentUpon>
+    </Content>
+    <None Include="Connected Services\FMSWebService\fmswebservices.wsdl" />
+    <Content Include="Content\kendo\2019.3.917\kendo.black.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.black.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.blueopal.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.blueopal.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap-v4.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.bootstrap.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-bootstrap.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-fiori.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-material.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-nova.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common-office365.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.common.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.black.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.blueopal.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.bootstrap.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.default.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.fiori.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.flat.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.highcontrast.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.material.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.materialblack.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.metro.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.metroblack.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.moonlight.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.nova.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.office365.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.silver.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.dataviz.uniform.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default-v2.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.default.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.fiori.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.fiori.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.flat.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.flat.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.highcontrast.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.highcontrast.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material-v2.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.material.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.materialblack.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.materialblack.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metro.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metro.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metroblack.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.metroblack.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.all.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.android.dark.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.android.light.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.blackberry.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.common.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.fiori.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.flat.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.ios.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.material.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.meego.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.nova.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.office365.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.mobile.wp8.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.moonlight.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.moonlight.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.nova.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.nova.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.office365.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.office365.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.rtl.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.silver.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.silver.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.uniform.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\kendo.uniform.mobile.min.css.map" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\WebComponentsIcons.eot" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\WebComponentsIcons.ttf" />
+    <Content Include="Content\kendo\2019.3.917\fonts\glyphs\WebComponentsIcons.woff" />
+    <Content Include="Content\kendo\2019.3.917\images\kendoui.ttf" />
+    <Content Include="Content\kendo\2019.3.917\images\kendoui.woff" />
+    <None Include="packages.config" />
+    <Content Include="Images\200.png" />
+    <Content Include="Images\CoWS_logo.png" />
+    <Content Include="Models\CSVPDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CSVPDB.edmx</DependentUpon>
+      <LastGenOutput>CSVPDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CSVPDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CSVPDB.edmx</DependentUpon>
+      <LastGenOutput>CSVPDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\CoWS\admin.js" />
+    <Content Include="Scripts\CoWS\childSupport.js" />
+    <Content Include="Scripts\CoWS\common.js" />
+    <Content Include="Scripts\CoWS\payroll.js" />
+    <Content Include="Scripts\CoWS\reports.js" />
+    <Content Include="Scripts\CoWS\security.js" />
+    <Content Include="Scripts\CoWS\vouchersPayable.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Reporting\Reports\Preliminary Summary.rpt" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\kendo\2019.3.917\angular.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\jquery.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\jszip.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.all-vsdoc.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.all.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.angular.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.autocomplete.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.binder.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.button.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.buttongroup.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.calendar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.chat.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.color.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.colorpicker.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.columnmenu.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.columnsorter.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.combobox.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.core.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.odata.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.signalr.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.xml.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.dataviz-vsdoc.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.barcode.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.chart.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.core.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.diagram.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.gauge.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.map.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.dataviz.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.mobile.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.qrcode.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.sparkline.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.stock.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.themes.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.treemap.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dateinput.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.datepicker.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.daterangepicker.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.datetimepicker.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dialog.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dom.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.draganddrop.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.drawer.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.drawing.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dropdownlist.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dropdowntree.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.editable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.editor.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.excel.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filebrowser.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filter.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filtercell.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filtermenu.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.fx.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.list.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.timeline.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.grid.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.groupable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.imagebrowser.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.list.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.listbox.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.listview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.maskedtextbox.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mediaplayer.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.menu.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.mobile-vsdoc.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.actionsheet.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.application.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.button.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.buttongroup.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.collapsible.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.drawer.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.listview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.loader.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.mobile.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.modalview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.navbar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.pane.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.popover.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.scroller.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.scrollview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.shim.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.splitview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.switch.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.tabstrip.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.view.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multicolumncombobox.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multiselect.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multiviewcalendar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.notification.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.numerictextbox.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.ooxml.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pager.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pane.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.panelbar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pdf.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pdfviewer.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivot.configurator.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivot.fieldmenu.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivotgrid.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.popup.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.progressbar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.rating.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.reorderable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.resizable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.responsivepanel.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.ripple.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.router.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.agendaview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.dayview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.monthview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.recurrence.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.timelineview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.view.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scrollview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.selectable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.slider.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.sortable.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.splitter.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.spreadsheet.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.switch.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.tabstrip.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timeline.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timepicker.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timezones.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.toolbar.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.tooltip.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.touch.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treelist.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treeview.draganddrop.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treeview.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.upload.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.userevents.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.validator.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.view.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.virtuallist.min.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.web-vsdoc.js" />
+    <None Include="Scripts\kendo\2019.3.917\kendo.web.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.web.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.window.min.js" />
+    <Content Include="Scripts\kendo\2019.3.917\pako_deflate.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ChildSupport\Index.cshtml" />
+    <Content Include="Views\VouchersPayable\Index.cshtml" />
+    <Content Include="Views\Payroll\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Security\CreateNewUser.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Voucher.cshtml" />
+    <Content Include="Views\Security\ResetPassword.cshtml" />
+    <Content Include="Views\Security\ModifyUser.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Payroll.cshtml" />
+    <Content Include="Scripts\kendo\2019.3.917\jquery.min.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.all.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.angular.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.autocomplete.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.binder.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.button.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.buttongroup.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.calendar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.chat.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.color.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.colorpicker.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.columnmenu.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.columnsorter.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.combobox.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.core.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.odata.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.signalr.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.data.xml.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.barcode.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.chart.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.core.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.diagram.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.gauge.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.map.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.mobile.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.qrcode.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.sparkline.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.stock.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.themes.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dataviz.treemap.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dateinput.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.datepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.daterangepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.datetimepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dialog.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dom.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.draganddrop.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.drawer.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.drawing.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dropdownlist.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.dropdowntree.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.editable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.editor.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.excel.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filebrowser.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filter.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filtercell.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.filtermenu.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.fx.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.list.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.gantt.timeline.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.grid.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.groupable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.imagebrowser.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.list.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.listbox.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.listview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.maskedtextbox.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mediaplayer.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.menu.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.actionsheet.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.application.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.button.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.buttongroup.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.collapsible.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.drawer.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.listview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.loader.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.modalview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.navbar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.pane.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.popover.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.scroller.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.scrollview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.shim.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.splitview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.switch.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.tabstrip.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.mobile.view.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multicolumncombobox.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multiselect.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.multiviewcalendar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.notification.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.numerictextbox.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.ooxml.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pager.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pane.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.panelbar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pdf.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pdfviewer.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivot.configurator.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivot.fieldmenu.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.pivotgrid.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.popup.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.progressbar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.rating.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.reorderable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.resizable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.responsivepanel.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.ripple.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.router.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.agendaview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.dayview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.monthview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.recurrence.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.timelineview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scheduler.view.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.scrollview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.selectable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.slider.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.sortable.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.splitter.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.spreadsheet.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.switch.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.tabstrip.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timeline.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timepicker.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.timezones.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.toolbar.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.tooltip.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.touch.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treelist.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treeview.draganddrop.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.treeview.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.upload.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.userevents.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.validator.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.view.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.virtuallist.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.web.min.js.map" />
+    <Content Include="Scripts\kendo\2019.3.917\kendo.window.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FMSWebServices\" />
+    <WCFMetadataStorage Include="Connected Services\FMSWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoWS.Web.Logging\CoWS.Web.Logging.csproj">
+      <Project>{18d2ff20-1dbe-4c8a-b6c0-2cacaadea2ea}</Project>
+      <Name>CoWS.Web.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58456</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58456/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties UseCdnSupport="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

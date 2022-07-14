@@ -1,0 +1,186 @@
+﻿@model CoWS.PayrollVouchers.ViewModels.BatchDocTransViewModel
+
+@section scripts {
+    <script src="~/Scripts/popper.min.js"></script>
+}
+
+<script>
+
+    $(document).ready(function () {
+        if (mblnAdd) {
+            divAdd.style.display = "inline-block";
+            divEdit.style.display = "none";
+            setTimeout(UpdateCommonValues, 100);
+        }
+        else {
+            divAdd.style.display = "none";
+            divEdit.style.display = "inline-block";
+        }
+    });
+
+</script>
+
+<div id="divEdit" style="width:450px; display:inline-block">
+    <div style="height:40px">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.PayPeriodEndingDate, new { @class = "lblRightAlign" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().DatePickerFor(model => model.PayPeriodEndingDate).HtmlAttributes(new { style = "width:150px; text-align:center", id = "dpPayPeriodEndingDateEdit" }).Format("MM/dd/yyyy"))
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.CheckCreationDate, new { @class = "lblRightAlign" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().DatePickerFor(model => model.CheckCreationDate).HtmlAttributes(new { style = "width:150px; text-align:center", id = "dpCheckCreationDateEdit" }).Format("MM/dd/yyyy"))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.CheckAmount, new { @class = "lblRightAlign" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().NumericTextBoxFor(model => model.CheckAmount).HtmlAttributes(new { style = "width:150px; text-align:right", id = "txtCheckAmountEdit" }).Spinners(false).Format("{0:c}"))
+        </div>
+    </div>
+</div>
+
+<div id="divAdd" style="width:700px; display:none;">
+    <div id="divHiddenValues">
+        @Html.HiddenFor(model => model.BankNumber)
+        @Html.HiddenFor(model => model.BatchHeaderID)
+        @Html.HiddenFor(model => model.BatchTotal)
+        @Html.HiddenFor(model => model.BatchType)
+        @Html.HiddenFor(model => model.DocumentType)
+        @Html.HiddenFor(model => model.TransCode)
+        @Html.HiddenFor(model => model.UserCode)
+
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.DocumentCreationDate, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().DatePickerFor(model => model.DocumentCreationDate).HtmlAttributes(new { style = "width:150px; text-align:center", id = "dpDocumentCreationDateAdd" }).Format("MM/dd/yyyy").Enable(false))
+        </div>
+        <div style="display:inline-block; float:right">
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnCopy")
+                .HtmlAttributes(new { tabindex = -1, type = "icon", @class = "iconClass", title = "Pre-populate fields with common data, i.e., Doc Create Date, Resp Code, etc.", style = "background-color:transparent; border:none; margin-top:-15px; margin-left:50px " })
+                .Icon("copy")
+                .Events(events => events.Click("btnCopy_onClick"))
+            )
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.CheckDescription, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.CheckDescription).HtmlAttributes(new { @class = "k-textbox", style = "width:200px; text-align:left" }))
+        </div>
+        <div style="display:inline-block; vertical-align:top">
+            @Html.ValidationMessageFor(model => model.CheckDescription)
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.PayPeriodEndingDate, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().DatePickerFor(model => model.PayPeriodEndingDate).HtmlAttributes(new { style = "width:150px; text-align:center", id = "dpPayPeriodEndingDateAdd" }).Format("MM/dd/yyyy").Enable(false))
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.VendorName, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.VendorName).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+        <div style="display:inline-block; vertical-align:top">
+            @Html.ValidationMessageFor(model => model.VendorName)
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.VendorNumber, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.VendorNumber).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+        <div style="display:inline-block; vertical-align:top">
+            @Html.ValidationMessageFor(model => model.VendorNumber)
+        </div>
+    </div>
+    <div style="height:40px">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.CheckCreationDate, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().DatePickerFor(model => model.CheckCreationDate).HtmlAttributes(new { style = "width:150px; text-align:center", id = "dpCheckCreationDateAdd" }).Format("MM/dd/yyyy").Enable(false))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block">
+            @Html.LabelFor(model => model.CheckAmount, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().NumericTextBoxFor(model => model.CheckAmount).HtmlAttributes(new { style = "width:150px; text-align:right", id = "txtCheckAmountAdd" }).Spinners(false).Format("{0:c}"))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.ResponsibilityCode, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.ResponsibilityCode).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.ObjectCode, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.ObjectCode).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.ProgramCode, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.ProgramCode).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.LineItemDescription, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.LineItemDescription).HtmlAttributes(new { style = "width:200px; text-align:left" }))
+        </div>
+        <div style="display:inline-block; vertical-align:top">
+            @Html.ValidationMessageFor(model => model.LineItemDescription)
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.PaymentType, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.PaymentType).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+    </div>
+    <div style="height:40px; ">
+        <div style="display:inline-block; vertical-align:top">
+            @Html.LabelFor(model => model.PaymentStatus, new { @class = "lblRightAlign150" })
+        </div>
+        <div style="display:inline-block">
+            @(Html.Kendo().TextBoxFor(model => model.PaymentStatus).HtmlAttributes(new { style = "width:150px; text-align:left" }))
+        </div>
+    </div>
+</div>
+

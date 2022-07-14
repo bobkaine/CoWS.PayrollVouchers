@@ -1,0 +1,253 @@
+﻿@*@model CoWS.PayrollVouchers.ViewModels.BatchDocTransViewModel*@
+@{
+    ViewBag.Title = "Payroll Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/CoWS/payroll.js"></script>
+}
+
+<style>
+    div.k-edit-form-container {
+        width: auto;
+        height: auto;
+    }
+
+    div.k-loading-mask {
+        z-index: 99;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>@ViewBag.Title</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divPayrollType" style="display:inline-block; vertical-align:top; margin-left:10px">
+                @(Html.Kendo().RadioButton()
+                    .Name(componentName: "rdoPayrollType1")
+                    .HtmlAttributes(new { @name = "payrollType" })
+                    .Label("Regular")
+                    .Value("Regular")
+                    .Checked(true)                    
+                )
+                @(Html.Kendo().RadioButton()
+                    .Name(componentName: "rdoPayrollType2")
+                    .HtmlAttributes(new { @name = "payrollType" })
+                    .Label("Pension")
+                    .Value("Pension")
+                )
+                @(Html.Kendo().RadioButton()
+                    .Name(componentName: "rdoPayrollType3")
+                    .HtmlAttributes(new { @name = "payrollType" })
+                    .Label("Longevity")
+                    .Value("Longevity")
+                )
+                @(Html.Kendo().RadioButton()
+                    .Name(componentName: "rdoPayrollType4")
+                    .HtmlAttributes(new { @name = "payrollType" })
+                    .Label("W2")
+                    .Value("N99")
+                )
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-bottom:1px;">
+            <div id="divCheckDate" style="max-width:1355px">
+                <div style="display:inline-block;text-align:right; ">
+                    <div>
+                        <label class="lblBold">Check Date: </label>
+                        @(Html.Kendo().DatePicker()
+                            .Name(componentName: "dpCheckDate")
+                            .HtmlAttributes(new { @class = "k-datepicker", style = "width:140px" })
+                            .Animation(true)
+                            .Format("MM/dd/yyyy")
+                            .Max(DateTime.Today)
+                            .Events(e => e.Change("dpCheckDate_onChange"))
+                        )
+                    </div>
+                    <label class="lblSmallLink"
+                           onclick="javascript:$('#dpCheckDate').data('kendoDatePicker').value(null);">Clear Date</label>
+                </div>
+                <div style="display:inline-block; vertical-align:top">
+                    @(Html.Kendo().Button()
+                        .Name(componentName: "btnGetChecks")
+                        .HtmlAttributes(new
+                                {
+                                    style = "vertical-align: top",
+                                    tabindex = -1,
+                                    type = "button",
+                                    title = "Clicking 'Get Checks' without specifying a 'Check Date' will attempt to process the latest file. If the file has already been processed the information will be returned from the database."
+                                })
+                        .Content(content: "Get Checks")
+                        .Events(events => events.Click("btnGetChecks_onClick"))
+                    )
+                </div>
+                <div id="divSubmitButton" style="display:none; vertical-align:top">
+                    @(Html.Kendo().Button()
+                        .Name(componentName: "btnSubmitChecks")
+                        .HtmlAttributes(new { tabindex = -1, type = "button" })
+                        .Content(content: "Submit")
+                        .Events(events => events.Click("btnSubmitChecks_onClick"))
+                    )
+                </div>
+                <div style="vertical-align:top; float:right">
+                    <label class="lblSmallLink"
+                           onclick="javascript:ReadSoapXML('GL');">SOAP Details</label>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divPayrollHeader" style="max-width:1355px">
+                <div>
+                    <div style="display:inline-block; width:150px; vertical-align:top">
+                        <label class="lblBold">Batch Total: </label><label id="lblBatchTotal" />
+                    </div>
+                    <div style="display:inline-block; width:100px; vertical-align:top">
+                        <label class="lblBold">Period: </label><label id="lblPeriod" />
+                    </div>
+                    <div style="display:inline-block; width:100px; vertical-align:top">
+                        <label class="lblBold">Year: </label><label id="lblYear" />
+                    </div>
+                    <div style="display:inline-block; width:195px; float:right; vertical-align:top;">
+                        <div style="text-align:left;">
+                            <label class="lblBold">Batch ID:</label>
+                            <label id="lblBatchID" />
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom:-5px">
+                    <label class="lblBold">Comments: </label>@*<label id="lblComments"></label>*@
+                    @(Html.Kendo().TextBox()
+                        .Name(componentName: "txtComments")
+                        .HtmlAttributes(new { style = "width: 400px; display:none", @maxlength = "80" })                        
+                    )
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divPayrollGrid" style="display:inline-grid; max-width:1355px;">
+                @(Html.Kendo().Grid<CoWS.PayrollVouchers.ViewModels.GLTDViewModel>()
+                    .Name("gridPayroll")
+                    .Columns(columns =>
+                    {
+                        columns.Command(command => {
+                            command.Edit().HtmlAttributes(new { @class = "dialogButton" });
+                            command.Custom("Delete").IconClass("k-icon k-i-close").HtmlAttributes(new { @class = "dialogButton" }).Click("DeleteConfirmation");
+                        }).HtmlAttributes(new { style = "text-align:center" }).Width(220).Locked();
+                        columns.Bound(c => c.TransactionDate).Width(160).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.TransactionAmount).Width(180).HtmlAttributes(new { style = "text-align: right" }).Format("{0:C}").HeaderHtmlAttributes(new { style = "text-align:center" })
+                                            .ClientFooterTemplate("<div id='calcBatchTotal' style = 'text-align:right'>#= kendo.format('{0:c}', sum)#</div>");
+                        columns.Bound(c => c.Comments).Width(350);
+                        columns.Bound(c => c.Fund).Width(100).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.ResponsibilityCode).Width(110).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.ObjectCode).Width(100).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.ProgramCode).Width(110).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.GLID).Visible(false);
+                        columns.Bound(c => c.BatchNumber).Visible(false);
+                        columns.Bound(c => c.BatchType).Visible(false);
+                        columns.Bound(c => c.BatchTotal).Visible(false);
+                        columns.Bound(c => c.GLComments).Visible(false);
+                        columns.Bound(c => c.JournalComments).Visible(false);
+                        columns.Bound(c => c.UserCode).Visible(false);
+                        columns.Bound(c => c.TransactionID).Visible(false);
+                    })
+                    .HtmlAttributes(new { @class = "k-grid", style = "height:100%; width:100%" })
+                    .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Payroll").Window(w => w.Title("Add/Edit Record")))
+                    .Selectable(selectable => selectable
+                    .Mode(GridSelectionMode.Single)
+                    .Type(GridSelectionType.Row))
+                    .Scrollable()
+                    .Resizable(r => r.Columns(true))
+                    .NoRecords("No Checks Found for Requested Date")
+                    .ToolBar(toolbar =>
+                    {
+                        toolbar.Create();
+                    })
+                    .Events(e =>
+                    {
+                        e.DataBound("gridPayroll_onDataBound");
+                        e.BeforeEdit("gridPayroll_onBeforeEdit");
+                    })
+                    .Pageable(p =>
+                    {
+                        p.Input(true);
+                        p.ButtonCount(5);
+                        p.PreviousNext(true);
+                    })
+                    .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(10)
+                    .Aggregates(aggregates =>
+                    {
+                        aggregates.Add(p => p.TransactionAmount).Sum();
+                    })
+                    .Model(model =>
+                    {
+                        model.Id(c => c.GLID);
+                    })
+                    .Create(crud => crud.Action(actionName: "Payroll_Create", controllerName: "Payroll"))
+                    .Read(crud => crud.Action(actionName: "Payroll_Read", controllerName: "Payroll").Data("TransactionDate"))
+                    .Update(crud => crud.Action(actionName: "Payroll_Update", controllerName: "Payroll"))
+                    .Destroy(crud => crud.Action(actionName: "Payroll_Destroy", controllerName: "Payroll"))
+                    )
+                )
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+
+        window.addEventListener("resize", function () {
+
+            var grid = $("#gridPayroll").data("kendoGrid");
+            var ds = grid.dataSource;
+            var lastRow = ds._data[ds._data.length - 1];
+
+            if (lastRow === undefined) {
+                $("#divPayrollGrid").css({ 'max-width': '1133px' });
+            }
+            else {
+                $("#divPayrollGrid").css({ 'max-width': '1355px' });
+            }
+            $("#divPayrollGrid").css({ 'width': window.innerWidth - 60 });
+            $("#divPayrollGrid").css({ 'height': window.innerHeight - 500 });
+            grid.resize();
+        });
+
+        $("#divPayrollGrid").css({ 'height': window.innerHeight - 500 });
+
+        SetDisplayMode(false);
+
+        $("#dpCheckDate").attr("readonly", true);
+
+        var dataSource = $("#gridPayroll").data("kendoGrid").dataSource;
+        dataSource.bind("sync", gridPayrollDataSource_onSync);
+
+        $(function () {
+            $("input[name='payrollType']").change(function () {
+                $('#dpCheckDate').data('kendoDatePicker').value(null);
+            });
+        });
+
+        $(function () {
+            $("input[name='txtComments']").change(function () {
+                UpdateBatchComment();
+            });
+        });
+    });
+
+</script>
+ 
+

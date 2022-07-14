@@ -1,0 +1,189 @@
+﻿
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* #region Footer styles */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.85em;
+    height: 60px;
+}
+/* #endregion */
+
+/* #region custom Kendo UI styles */
+h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: lighter;
+    color: #fff;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.placeholders {
+    margin: 30px auto;
+}
+
+.placeholder img {
+    display: inline-block;
+}
+
+p .k-button {
+    margin: 0 15px 0 0;
+}
+
+#configure {
+    display: none;
+}
+
+p .k-button {
+    margin: 0 15px 0 0;
+}
+
+#responsive-panel {
+    padding: 0;
+}
+
+    #responsive-panel .k-menu {
+        padding: .5rem;
+    }
+/* #endregion */
+@media (max-width: 767px) {
+    #responsive-panel {
+        transition: all linear .2s;
+    }
+
+    #configure {
+        display: block;
+        float: right;
+    }
+
+    .k-rpanel {
+        padding: 0 1rem;
+    }
+
+    .k-rpanel-expanded {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-header {
+        width: 100%;
+    }
+
+    .k-menu .k-item,
+    .k-menu .k-link {
+        width: 100%;
+    }
+
+    .k-menu .k-link {
+        box-sizing: border-box;
+    }
+}
+
+.clsPrimaryMessage {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.17em;
+}
+
+.clsSecondaryMessage {
+    text-align: center;
+    font-size: 1.17em;
+}
+
+#divConfirmCancelButtons {
+    /*position: absolute;
+    bottom: 20px;
+    left: auto;
+    display: none;
+    font-size: 16px;*/
+    text-align:center;
+    vertical-align:bottom;
+}
+
+#divYesNoButtons {
+    position: absolute;
+    bottom: 20px;
+    left: 65px;
+    display: none;
+    font-size: 16px;
+}
+
+#divDialogButtons {
+    position: absolute;
+    bottom: 20px;
+    left: 170px;
+    font-size: 16px;
+}
+
+#divOkButton {
+    position: absolute;
+    bottom: 20px;
+    font-size: 16px;
+    width: 95%;
+    /*margin:0 auto;*/
+    display: none;
+    text-align: center;
+}
+
+.dialogButton {
+    width: 90px;
+}
+
+.lblBold {
+    font-weight:600;
+    margin-right:10px;
+}
+
+.lblRightAlign{
+    margin-right:10px;
+    text-align:right;
+    width: 225px;
+}
+
+.lblRightAlign125 {
+    margin-right: 10px;
+    text-align: right;
+    width: 125px;
+}
+
+.lblRightAlign150 {
+    margin-right: 10px;
+    text-align: right;
+    width: 150px;
+}
+
+.lblStatus {
+    color: blue;
+}
+
+.lblSmallLink {
+    margin-top: -5px;
+    margin-bottom: -10px;
+    cursor: pointer;
+    font-size: small;
+    color: blue;
+}
+.navbar-right {
+    float: right !important;
+    margin-right:10px;
+}
+
+.ws-textbox {
+    width: 200px !important;
+}
+
+.ws-textbox300 {
+    width: 300px !important;
+}

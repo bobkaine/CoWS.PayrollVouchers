@@ -1,0 +1,1157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CSVPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="256" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBatchHeader">
+          <Key>
+            <PropertyRef Name="BatchHeaderID" />
+          </Key>
+          <Property Name="BatchHeaderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchID" Type="varchar" MaxLength="50" />
+          <Property Name="BatchType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="BatchTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="FileDescription1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileDescription2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Ledger" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Period" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="APApprover" Type="nvarchar" MaxLength="128" />
+          <Property Name="GLApprover" Type="nvarchar" MaxLength="128" />
+          <Property Name="FinalApprover" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="tblBatchHeaderAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchHeaderID" Type="int" Nullable="false" />
+          <Property Name="BatchID" Type="varchar" MaxLength="50" />
+          <Property Name="BatchType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="BatchTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="FileDescription1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileDescription2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Ledger" Type="varchar" MaxLength="5" />
+          <Property Name="Period" Type="varchar" MaxLength="2" />
+          <Property Name="Year" Type="varchar" MaxLength="4" />
+          <Property Name="APApprover" Type="nvarchar" MaxLength="128" />
+          <Property Name="GLApprover" Type="nvarchar" MaxLength="128" />
+          <Property Name="FinalApprover" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDocumentNumber">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="PayPeriodEndingDate" Type="datetime" Nullable="false" />
+          <Property Name="VendorName" Type="varchar" MaxLength="33" Nullable="false" />
+          <Property Name="VendorNumber" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DocumentCreationDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PaymentStatus" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CheckDescription" Type="varchar" MaxLength="28" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="BatchHeaderID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDocumentNumberAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="DocumentType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="PayPeriodEndingDate" Type="datetime" Nullable="false" />
+          <Property Name="VendorName" Type="varchar" MaxLength="33" Nullable="false" />
+          <Property Name="VendorNumber" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DocumentCreationDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PaymentStatus" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CheckDescription" Type="varchar" MaxLength="28" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="BatchHeaderID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGeneralLedger">
+          <Key>
+            <PropertyRef Name="GLID" />
+          </Key>
+          <Property Name="GLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GLType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="BatchNumber" Type="varchar" MaxLength="50" />
+          <Property Name="BatchType" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="BatchTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="GLComments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="JournalComments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Ledger" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Period" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGeneralLedgerAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GLID" Type="int" Nullable="false" />
+          <Property Name="GLType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="BatchNumber" Type="varchar" MaxLength="50" />
+          <Property Name="BatchType" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="BatchTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="GLComments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="JournalComments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Ledger" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Period" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGeneralSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ChildSupportDesc" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="FilePath" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="3" />
+          <Property Name="VouchersPayableDesc" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="TempPassword" Type="varchar" MaxLength="25" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="tblGLTransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionAmount" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Fund" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ResponsibilityCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ObjectCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ProgramCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="GLID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGLTransactionDetailAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="TransactionAmount" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Fund" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ResponsibilityCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ObjectCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ProgramCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="GLID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSoapXML">
+          <Key>
+            <PropertyRef Name="BatchType" />
+          </Key>
+          <Property Name="BatchType" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Request" Type="xml" Nullable="false" />
+          <Property Name="Response" Type="xml" Nullable="false" />
+          <Property Name="DatePosted" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CheckAmount" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="ResponsibilityCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ObjectCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ProgramCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="LineItemDescription" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTransactionDetailAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="TransCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CheckAmount" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="ResponsibilityCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ObjectCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ProgramCode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="LineItemDescription" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="BankNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblWebServiceSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FMSUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FMSPassword1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FMSPassword2" Type="varchar" MaxLength="50" />
+          <Property Name="FMSPassword3" Type="varchar" MaxLength="50" />
+          <Property Name="Ledger" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OSUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OSPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OutputDevice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebServiceURL" Type="varchar" MaxLength="100" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="WhoModified" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDocumentNumber_tblBatchHeader">
+          <End Role="tblBatchHeader" Type="Self.tblBatchHeader" Multiplicity="1" />
+          <End Role="tblDocumentNumber" Type="Self.tblDocumentNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBatchHeader">
+              <PropertyRef Name="BatchHeaderID" />
+            </Principal>
+            <Dependent Role="tblDocumentNumber">
+              <PropertyRef Name="BatchHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGLTransactionDetail_tblGeneralLedger">
+          <End Role="tblGeneralLedger" Type="Self.tblGeneralLedger" Multiplicity="1" />
+          <End Role="tblGLTransactionDetail" Type="Self.tblGLTransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGeneralLedger">
+              <PropertyRef Name="GLID" />
+            </Principal>
+            <Dependent Role="tblGLTransactionDetail">
+              <PropertyRef Name="GLID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransactionDetail_tblDocumentNumber">
+          <End Role="tblDocumentNumber" Type="Self.tblDocumentNumber" Multiplicity="1" />
+          <End Role="tblTransactionDetail" Type="Self.tblTransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDocumentNumber">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="tblTransactionDetail">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CSVPDBModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBatchHeader" EntityType="Self.tblBatchHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBatchHeaderAudit" EntityType="Self.tblBatchHeaderAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocumentNumber" EntityType="Self.tblDocumentNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocumentNumberAudit" EntityType="Self.tblDocumentNumberAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneralLedger" EntityType="Self.tblGeneralLedger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneralLedgerAudit" EntityType="Self.tblGeneralLedgerAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneralSettings" EntityType="Self.tblGeneralSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGLTransactionDetail" EntityType="Self.tblGLTransactionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGLTransactionDetailAudit" EntityType="Self.tblGLTransactionDetailAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoapXML" EntityType="Self.tblSoapXML" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransactionDetail" EntityType="Self.tblTransactionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransactionDetailAudit" EntityType="Self.tblTransactionDetailAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWebServiceSettings" EntityType="Self.tblWebServiceSettings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDocumentNumber_tblBatchHeader" Association="Self.FK_tblDocumentNumber_tblBatchHeader">
+            <End Role="tblBatchHeader" EntitySet="tblBatchHeader" />
+            <End Role="tblDocumentNumber" EntitySet="tblDocumentNumber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGLTransactionDetail_tblGeneralLedger" Association="Self.FK_tblGLTransactionDetail_tblGeneralLedger">
+            <End Role="tblGeneralLedger" EntitySet="tblGeneralLedger" />
+            <End Role="tblGLTransactionDetail" EntitySet="tblGLTransactionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransactionDetail_tblDocumentNumber" Association="Self.FK_tblTransactionDetail_tblDocumentNumber">
+            <End Role="tblDocumentNumber" EntitySet="tblDocumentNumber" />
+            <End Role="tblTransactionDetail" EntitySet="tblTransactionDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSVPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblTransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckAmount" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="ResponsibilityCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ObjectCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProgramCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LineItemDescription" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDocumentNumber" Relationship="CSVPDBModel.FK_tblTransactionDetail_tblDocumentNumber" FromRole="tblTransactionDetail" ToRole="tblDocumentNumber" />
+        </EntityType>
+        <EntityContainer Name="CSVPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblTransactionDetails" EntityType="Self.tblTransactionDetail" />
+          <EntitySet Name="AspNetRoles" EntityType="CSVPDBModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="CSVPDBModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="CSVPDBModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="CSVPDBModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CSVPDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CSVPDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CSVPDBModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="tblWebServiceSettings" EntityType="CSVPDBModel.tblWebServiceSetting" />
+          <EntitySet Name="tblDocumentNumbers" EntityType="CSVPDBModel.tblDocumentNumber" />
+          <AssociationSet Name="FK_tblTransactionDetail_tblDocumentNumber" Association="CSVPDBModel.FK_tblTransactionDetail_tblDocumentNumber">
+            <End Role="tblDocumentNumber" EntitySet="tblDocumentNumbers" />
+            <End Role="tblTransactionDetail" EntitySet="tblTransactionDetails" />
+          </AssociationSet>
+          <EntitySet Name="tblDocumentNumberAudits" EntityType="CSVPDBModel.tblDocumentNumberAudit" />
+          <EntitySet Name="tblGeneralSettings" EntityType="CSVPDBModel.tblGeneralSetting" />
+          <EntitySet Name="tblTransactionDetailAudits" EntityType="CSVPDBModel.tblTransactionDetailAudit" />
+          <EntitySet Name="tblBatchHeaders" EntityType="CSVPDBModel.tblBatchHeader" />
+          <AssociationSet Name="FK_tblDocumentNumber_tblBatchHeader" Association="CSVPDBModel.FK_tblDocumentNumber_tblBatchHeader">
+            <End Role="tblBatchHeader" EntitySet="tblBatchHeaders" />
+            <End Role="tblDocumentNumber" EntitySet="tblDocumentNumbers" />
+          </AssociationSet>
+          <EntitySet Name="tblBatchHeaderAudits" EntityType="CSVPDBModel.tblBatchHeaderAudit" />
+          <EntitySet Name="tblGLTransactionDetails" EntityType="CSVPDBModel.tblGLTransactionDetail" />
+          <EntitySet Name="tblGLTransactionDetailAudits" EntityType="CSVPDBModel.tblGLTransactionDetailAudit" />
+          <EntitySet Name="tblGeneralLedgers" EntityType="CSVPDBModel.tblGeneralLedger" />
+          <AssociationSet Name="FK_tblGLTransactionDetail_tblGeneralLedger" Association="CSVPDBModel.FK_tblGLTransactionDetail_tblGeneralLedger">
+            <End Role="tblGeneralLedger" EntitySet="tblGeneralLedgers" />
+            <End Role="tblGLTransactionDetail" EntitySet="tblGLTransactionDetails" />
+          </AssociationSet>
+          <EntitySet Name="tblGeneralLedgerAudits" EntityType="CSVPDBModel.tblGeneralLedgerAudit" />
+          <EntitySet Name="tblSoapXMLs" EntityType="CSVPDBModel.tblSoapXML" />
+          </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CSVPDBModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="CSVPDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="CSVPDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="CSVPDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="CSVPDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CSVPDBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CSVPDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CSVPDBModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CSVPDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CSVPDBModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CSVPDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="CSVPDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tblWebServiceSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FMSUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FMSPassword1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FMSPassword2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FMSPassword3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ledger" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OSUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OSPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OutputDevice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WebServiceURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="WhoModified" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDocumentNumber">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="PayPeriodEndingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="false" />
+          <Property Name="VendorNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentCreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CheckDescription" Type="String" Nullable="false" MaxLength="28" FixedLength="false" Unicode="false" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="BatchHeaderID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblTransactionDetails" Relationship="CSVPDBModel.FK_tblTransactionDetail_tblDocumentNumber" FromRole="tblDocumentNumber" ToRole="tblTransactionDetail" />
+          <NavigationProperty Name="tblBatchHeader" Relationship="CSVPDBModel.FK_tblDocumentNumber_tblBatchHeader" FromRole="tblDocumentNumber" ToRole="tblBatchHeader" />
+        </EntityType>
+        <Association Name="FK_tblTransactionDetail_tblDocumentNumber">
+          <End Type="CSVPDBModel.tblDocumentNumber" Role="tblDocumentNumber" Multiplicity="1" />
+          <End Type="CSVPDBModel.tblTransactionDetail" Role="tblTransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDocumentNumber">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="tblTransactionDetail">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblDocumentNumberAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="PayPeriodEndingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VendorName" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="false" />
+          <Property Name="VendorNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentCreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CheckDescription" Type="String" Nullable="false" MaxLength="28" FixedLength="false" Unicode="false" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="BatchHeaderID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGeneralSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ChildSupportDesc" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="VouchersPayableDesc" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="TempPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblTransactionDetailAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="TransCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckAmount" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="ResponsibilityCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="LineItemDescription" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblBatchHeader">
+          <Key>
+            <PropertyRef Name="BatchHeaderID" />
+          </Key>
+          <Property Name="BatchHeaderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BatchType" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="BatchTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="FileDescription1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileDescription2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="APApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GLApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FinalApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDocumentNumbers" Relationship="CSVPDBModel.FK_tblDocumentNumber_tblBatchHeader" FromRole="tblBatchHeader" ToRole="tblDocumentNumber" />
+          <Property Name="Ledger" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Period" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblDocumentNumber_tblBatchHeader">
+          <End Type="CSVPDBModel.tblBatchHeader" Role="tblBatchHeader" Multiplicity="1" />
+          <End Type="CSVPDBModel.tblDocumentNumber" Role="tblDocumentNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBatchHeader">
+              <PropertyRef Name="BatchHeaderID" />
+            </Principal>
+            <Dependent Role="tblDocumentNumber">
+              <PropertyRef Name="BatchHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblBatchHeaderAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchHeaderID" Type="Int32" Nullable="false" />
+          <Property Name="BatchID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BatchType" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="BatchTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="FileDescription1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileDescription2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="BankNumber" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="APApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GLApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FinalApprover" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Ledger" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Period" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblGLTransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionAmount" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Fund" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ResponsibilityCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="GLID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblGeneralLedger" Relationship="CSVPDBModel.FK_tblGLTransactionDetail_tblGeneralLedger" FromRole="tblGLTransactionDetail" ToRole="tblGeneralLedger" />
+        </EntityType>
+        <EntityType Name="tblGLTransactionDetailAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionAmount" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Fund" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ResponsibilityCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="GLID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGeneralLedger">
+          <Key>
+            <PropertyRef Name="GLID" />
+          </Key>
+          <Property Name="GLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BatchType" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="BatchTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="GLComments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="JournalComments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Ledger" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Period" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblGLTransactionDetails" Relationship="CSVPDBModel.FK_tblGLTransactionDetail_tblGeneralLedger" FromRole="tblGeneralLedger" ToRole="tblGLTransactionDetail" />
+          <Property Name="GLType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tblGLTransactionDetail_tblGeneralLedger">
+          <End Type="CSVPDBModel.tblGeneralLedger" Role="tblGeneralLedger" Multiplicity="1" />
+          <End Type="CSVPDBModel.tblGLTransactionDetail" Role="tblGLTransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGeneralLedger">
+              <PropertyRef Name="GLID" />
+            </Principal>
+            <Dependent Role="tblGLTransactionDetail">
+              <PropertyRef Name="GLID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblGeneralLedgerAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GLID" Type="Int32" Nullable="false" />
+          <Property Name="BatchNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BatchType" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="BatchTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="GLComments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="JournalComments" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Ledger" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Period" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GLType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSoapXML">
+          <Key>
+            <PropertyRef Name="BatchType" />
+          </Key>
+          <Property Name="BatchType" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Response" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSVPDBModelStoreContainer" CdmEntityContainer="CSVPEntities">
+          <EntitySetMapping Name="tblTransactionDetails">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblTransactionDetail">
+              <MappingFragment StoreEntitySet="tblTransactionDetail">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransCode" ColumnName="TransCode" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CheckAmount" ColumnName="CheckAmount" />
+                <ScalarProperty Name="ResponsibilityCode" ColumnName="ResponsibilityCode" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+                <ScalarProperty Name="LineItemDescription" ColumnName="LineItemDescription" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CSVPDBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CSVPDBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CSVPDBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CSVPDBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CSVPDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tblWebServiceSettings">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblWebServiceSetting">
+              <MappingFragment StoreEntitySet="tblWebServiceSettings">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="WebServiceURL" ColumnName="WebServiceURL" />
+                <ScalarProperty Name="OutputDevice" ColumnName="OutputDevice" />
+                <ScalarProperty Name="OSPassword" ColumnName="OSPassword" />
+                <ScalarProperty Name="OSUser" ColumnName="OSUser" />
+                <ScalarProperty Name="Ledger" ColumnName="Ledger" />
+                <ScalarProperty Name="FMSPassword3" ColumnName="FMSPassword3" />
+                <ScalarProperty Name="FMSPassword2" ColumnName="FMSPassword2" />
+                <ScalarProperty Name="FMSPassword1" ColumnName="FMSPassword1" />
+                <ScalarProperty Name="FMSUser" ColumnName="FMSUser" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocumentNumbers">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblDocumentNumber">
+              <MappingFragment StoreEntitySet="tblDocumentNumber">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="BatchHeaderID" ColumnName="BatchHeaderID" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="CheckDescription" ColumnName="CheckDescription" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="DocumentCreationDate" ColumnName="DocumentCreationDate" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="VendorNumber" ColumnName="VendorNumber" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="PayPeriodEndingDate" ColumnName="PayPeriodEndingDate" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocumentNumberAudits">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblDocumentNumberAudit">
+              <MappingFragment StoreEntitySet="tblDocumentNumberAudit">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="BatchHeaderID" ColumnName="BatchHeaderID" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="CheckDescription" ColumnName="CheckDescription" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="DocumentCreationDate" ColumnName="DocumentCreationDate" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="VendorNumber" ColumnName="VendorNumber" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="PayPeriodEndingDate" ColumnName="PayPeriodEndingDate" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneralSettings">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblGeneralSetting">
+              <MappingFragment StoreEntitySet="tblGeneralSettings">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="TempPassword" ColumnName="TempPassword" />
+                <ScalarProperty Name="VouchersPayableDesc" ColumnName="VouchersPayableDesc" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="ChildSupportDesc" ColumnName="ChildSupportDesc" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransactionDetailAudits">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblTransactionDetailAudit">
+              <MappingFragment StoreEntitySet="tblTransactionDetailAudit">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="LineItemDescription" ColumnName="LineItemDescription" />
+                <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ResponsibilityCode" ColumnName="ResponsibilityCode" />
+                <ScalarProperty Name="CheckAmount" ColumnName="CheckAmount" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="TransCode" ColumnName="TransCode" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBatchHeaders">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblBatchHeader">
+              <MappingFragment StoreEntitySet="tblBatchHeader">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Ledger" ColumnName="Ledger" />
+                <ScalarProperty Name="FinalApprover" ColumnName="FinalApprover" />
+                <ScalarProperty Name="GLApprover" ColumnName="GLApprover" />
+                <ScalarProperty Name="APApprover" ColumnName="APApprover" />
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="FileDescription2" ColumnName="FileDescription2" />
+                <ScalarProperty Name="FileDescription1" ColumnName="FileDescription1" />
+                <ScalarProperty Name="BatchTotal" ColumnName="BatchTotal" />
+                <ScalarProperty Name="BatchType" ColumnName="BatchType" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchHeaderID" ColumnName="BatchHeaderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBatchHeaderAudits">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblBatchHeaderAudit">
+              <MappingFragment StoreEntitySet="tblBatchHeaderAudit">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Ledger" ColumnName="Ledger" />
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="FinalApprover" ColumnName="FinalApprover" />
+                <ScalarProperty Name="GLApprover" ColumnName="GLApprover" />
+                <ScalarProperty Name="APApprover" ColumnName="APApprover" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="FileDescription2" ColumnName="FileDescription2" />
+                <ScalarProperty Name="FileDescription1" ColumnName="FileDescription1" />
+                <ScalarProperty Name="BatchTotal" ColumnName="BatchTotal" />
+                <ScalarProperty Name="BatchType" ColumnName="BatchType" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchHeaderID" ColumnName="BatchHeaderID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGLTransactionDetails">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblGLTransactionDetail">
+              <MappingFragment StoreEntitySet="tblGLTransactionDetail">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="GLID" ColumnName="GLID" />
+                <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ResponsibilityCode" ColumnName="ResponsibilityCode" />
+                <ScalarProperty Name="Fund" ColumnName="Fund" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGLTransactionDetailAudits">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblGLTransactionDetailAudit">
+              <MappingFragment StoreEntitySet="tblGLTransactionDetailAudit">
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="GLID" ColumnName="GLID" />
+                <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ResponsibilityCode" ColumnName="ResponsibilityCode" />
+                <ScalarProperty Name="Fund" ColumnName="Fund" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneralLedgers">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblGeneralLedger">
+              <MappingFragment StoreEntitySet="tblGeneralLedger">
+                <ScalarProperty Name="GLType" ColumnName="GLType" />
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Ledger" ColumnName="Ledger" />
+                <ScalarProperty Name="JournalComments" ColumnName="JournalComments" />
+                <ScalarProperty Name="GLComments" ColumnName="GLComments" />
+                <ScalarProperty Name="BatchTotal" ColumnName="BatchTotal" />
+                <ScalarProperty Name="BatchType" ColumnName="BatchType" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="GLID" ColumnName="GLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneralLedgerAudits">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblGeneralLedgerAudit">
+              <MappingFragment StoreEntitySet="tblGeneralLedgerAudit">
+                <ScalarProperty Name="GLType" ColumnName="GLType" />
+                <ScalarProperty Name="WhoModified" ColumnName="WhoModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Ledger" ColumnName="Ledger" />
+                <ScalarProperty Name="JournalComments" ColumnName="JournalComments" />
+                <ScalarProperty Name="GLComments" ColumnName="GLComments" />
+                <ScalarProperty Name="BatchTotal" ColumnName="BatchTotal" />
+                <ScalarProperty Name="BatchType" ColumnName="BatchType" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="GLID" ColumnName="GLID" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSoapXMLs">
+            <EntityTypeMapping TypeName="CSVPDBModel.tblSoapXML">
+              <MappingFragment StoreEntitySet="tblSoapXML">
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BatchType" ColumnName="BatchType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,298 @@
+﻿@model CoWS.PayrollVouchers.ViewModels.BatchDocTransViewModel
+
+@{
+    ViewBag.Title = "Vouchers Payable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var isAPProcessor = "@HttpContext.Current.User.IsInRole("AP Processor")";
+    var isGLProcessor = "@HttpContext.Current.User.IsInRole("GL Processor")";
+    var isReviewer = "@HttpContext.Current.User.IsInRole("Reviewer")";
+</script>
+
+@section scripts {
+    <script src="~/Scripts/CoWS/vouchersPayable.js"></script>
+}
+
+<style>
+    div.k-edit-form-container {
+        width: auto;
+        height: auto;
+    }
+
+    div.k-loading-mask {
+        z-index: 99;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>@ViewBag.Title</h4>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-bottom:1px;">
+            <div style="display:inline-block;text-align:right">
+                <div>
+                    <label class="lblBold">Voucher Date: </label>
+                    @(Html.Kendo().DatePicker()
+                        .Name(componentName: "dpVoucherDate")
+                        .HtmlAttributes(new { @class = "k-datepicker", style = "width:140px" })
+                        .Animation(true)
+                        .Format("MM/dd/yyyy")
+                        .Max(DateTime.Today)
+                        .Events(e => e.Change("dpVoucherDate_onChange"))
+                    )
+                </div>
+                <label class="lblSmallLink"
+                       onclick="javascript:$('#dpVoucherDate').data('kendoDatePicker').value(null);">Clear Date</label>
+            </div>
+            <div id="divAPProcessorFunctions" style="display:inline-block; vertical-align:top">
+                @if (User.IsInRole("AP Processor"))
+                {
+                    <div style="display:inline-block">
+                        @(Html.Kendo().Button()
+                            .Name(componentName: "btnGetVouchers")
+                            .HtmlAttributes(new
+                                    {
+                                        tabindex = -1,
+                                                    type = "button",
+                                                    title = "Clicking 'Get Vouchers' without specifying a 'Voucher Date' will attempt to process the latest file. If the file has already been processed the information will be returned from the database."
+                                    })
+                            .Content(content: "Get Vouchers")
+                            .Events(events => events.Click("btnGetVouchers_onClick"))
+                        )
+                    </div>
+                    <div id="divAPSubmitButton" style="display:none">
+                        @(Html.Kendo().Button()
+                            .Name(componentName: "btnSubmitVouchers")
+                            .HtmlAttributes(new { tabindex = -1, type = "button" })
+                            .Content(content: "Submit")
+                            .Events(events => events.Click("btnSubmitVouchers_onClick"))
+                        )
+                    </div>
+                }
+                else
+                {
+                    <div style="display:inline-block">
+                        @(Html.Kendo().Button()
+                            .Name(componentName: "btnGetVouchers")
+                            .HtmlAttributes(new { tabindex = -1, type = "button", title = "Clicking 'Get Vouchers' without specifying a 'Voucher Date' will return the latest batch" })
+                            .Content(content: "Get Vouchers")
+                            .Events(events => events.Click("btnGetVouchersFromDB_onClick"))
+                        )
+                    </div>
+                }
+                <div id="divAPCheckBox" style="display:none; vertical-align:top; margin-left:10px">
+                    @(Html.Kendo().CheckBox()
+                        .Name(componentName: "chkAPProcessorApproved")
+                        .Label(" AP Processor Approval")
+                        .Enable(false)
+                    )
+                </div>
+            </div>
+
+            <div id="divGLCheckBox" style="display:none; vertical-align:top; margin-left:20px">
+                @if (User.IsInRole("GL Processor"))
+                {
+                    @(Html.Kendo().CheckBox()
+                        .Name(componentName: "chkGLProcessorApproved")
+                        .Label(" GL Processor Approval")
+                    )
+                }
+                else
+                {
+                    @(Html.Kendo().CheckBox()
+                        .Name(componentName: "chkGLProcessorApproved")
+                        .Label(" GL Processor Approval")
+                        .Enable(false)
+                    )
+                }
+            </div>
+
+            <div id="divReviewerCheckBox" style="display:none; vertical-align:top; margin-left:20px">
+                @if (User.IsInRole("Reviewer"))
+                {
+                    @(Html.Kendo().CheckBox()
+                        .Name(componentName: "chkReviewerApproved")
+                        .Label(" Final Approval")
+                    )
+                }
+                else
+                {
+                    @(Html.Kendo().CheckBox()
+                        .Name(componentName: "chkReviewerApproved")
+                        .Label(" Final Approval")
+                        .Enable(false)
+                    )
+                }
+            </div>
+
+            <div style="vertical-align:top; float:right">
+                <label class="lblSmallLink"
+                       onclick="javascript:ReadSoapXML('PV');">SOAP Details</label>
+            </div>
+
+            @if (User.IsInRole("GL Processor"))
+            {
+                <div id="divRemoveApprovals" style="display:none; float:right; margin-top:35px; margin-right:10px;">
+                    <label class="lblSmallLink"
+                           onclick="javascript:btnUnSubmitVouchers_onClick();">Remove Approvals</label>
+                </div>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                <div style="display:inline-block; width:200px; vertical-align:top">
+                    <label class="lblBold">Batch Total: </label><label id="lblBatchTotal" />
+                </div>
+                <div style="display:inline-block; width:100px; vertical-align:top">
+                    <label class="lblBold">Period: </label><label id="lblPeriod" />
+                </div>
+                <div style="display:inline-block; width:100px; vertical-align:top">
+                    <label class="lblBold">Year: </label><label id="lblYear" />
+                </div>
+                <div style="display:inline-block; width:195px; float:right; vertical-align:top;">
+                    <div style="text-align:left;">
+                        <label class="lblBold">Batch ID:</label>
+                        <label id="lblBatchID" />
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom:-10px">
+                <label class="lblBold">File Description: </label><label id="lblFileDescription" />
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divVouchersPayableGrid" style="display:inline-grid;">
+                @(Html.Kendo().Grid<CoWS.PayrollVouchers.ViewModels.BatchDocTransViewModel>()
+                    .Name("gridVouchersPayable")
+                    .Columns(columns =>
+                    {
+                        columns.Command(command => { 
+                            command.Edit().HtmlAttributes(new { @class = "dialogButton" });
+                            command.Custom("Delete").IconClass("k-icon k-i-close").HtmlAttributes(new { @class = "dialogButton" }).Click("DeleteConfirmation");
+                        }).HtmlAttributes(new { style = "text-align:center" }).Width(220).Locked().Hidden();columns.Bound(c => c.DocumentCreationDate).Width(150).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.CheckDescription).Width(200);
+                        columns.Bound(c => c.PayPeriodEndingDate).Width(180).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.VendorName).Width(150);
+                        columns.Bound(c => c.VendorNumber).Width(100);
+                        columns.Bound(c => c.CheckCreationDate).Width(170).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" })
+                                            .ClientFooterTemplate("<div style = 'text-align:right'>Calc Batch Total:</div>");
+                        columns.Bound(c => c.CheckAmount).Width(140).HtmlAttributes(new { style = "text-align: right" }).Format("{0:C}")
+                                            .ClientFooterTemplate("<div id='calcBatchTotal' style = 'text-align:right'>#= kendo.format('{0:c}', sum)#</div>");
+                        columns.Bound(c => c.ResponsibilityCode).Width(110).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.ObjectCode).Width(100).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.ProgramCode).Width(110).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.LineItemDescription).Width(250);
+                        columns.Bound(c => c.PaymentType).Width(100).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.PaymentStatus).Width(110).HtmlAttributes(new { style = "text-align: center" }).HeaderHtmlAttributes(new { style = "text-align:center" });
+                        columns.Bound(c => c.BatchHeaderID).Visible(false);
+                        columns.Bound(c => c.BatchID).Visible(false);
+                        columns.Bound(c => c.BatchType).Visible(false);
+                        columns.Bound(c => c.BatchTotal).Visible(false);
+                        columns.Bound(c => c.FileDescription1).Visible(false);
+                        columns.Bound(c => c.FileDescription2).Visible(false);
+                        columns.Bound(c => c.UserCode).Visible(false);
+                        columns.Bound(c => c.BankNumber).Visible(false);
+                        columns.Bound(c => c.DocumentID).Visible(false);
+                        columns.Bound(c => c.DocumentType).Visible(false);
+                        columns.Bound(c => c.TransactionID).Visible(false);
+                        columns.Bound(c => c.TransCode).Visible(false);
+                        columns.Bound(c => c.APApprover).Visible(false);
+                        columns.Bound(c => c.GLApprover).Visible(false);
+                        columns.Bound(c => c.FinalApprover).Visible(false);
+                    })
+                    .HtmlAttributes(new { @class = "g-grid", style = "height:100%" })
+                    .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Voucher").Window(w => w.Title("Add/Edit Record")))
+                    .Selectable(selectable => selectable
+                    .Enabled(true)
+                    .Mode(GridSelectionMode.Single)
+                    .Type(GridSelectionType.Row))
+                    .Scrollable()
+                    .Resizable(r => r.Columns(true))
+                    .NoRecords("No Vouchers Found for Requested Date")
+                    .ToolBar(toolbar =>
+                    {
+                        toolbar.Create();
+                    })
+                    .Events(e =>
+                    {
+                        e.DataBound("gridVouchersPayable_onDataBound");
+                        e.BeforeEdit("gridVouchersPayable_onBeforeEdit");
+                    })
+                    .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Aggregates(aggregates =>
+                    {
+                        aggregates.Add(p => p.CheckAmount).Sum();
+                    })
+                    .Model(model =>
+                    {
+                        model.Id(c => c.BatchHeaderID);
+                    })
+                    .Create(crud => crud.Action(actionName: "VouchersPayable_Create", controllerName: "VouchersPayable"))
+                    .Read(crud => crud.Action(actionName: "VouchersPayable_Read", controllerName: "VouchersPayable").Data("DocumentCreationDate"))
+                    .Update(crud => crud.Action(actionName: "VouchersPayable_Update", controllerName: "VouchersPayable"))
+                    .Destroy(crud => crud.Action(actionName: "VouchersPayable_Destroy", controllerName: "VouchersPayable"))
+                    )
+
+                )
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+
+        var grid = $("#gridVouchersPayable").data("kendoGrid");
+        $(".k-grid-toolbar").hide();
+
+        window.addEventListener("resize", function () {
+            $("#divVouchersPayableGrid").css({ 'width': window.innerWidth - 60 });
+            $("#divVouchersPayableGrid").css({ 'height': window.innerHeight - 450 });
+            grid.resize();
+        });
+
+        $("#divVouchersPayableGrid").css({ 'width': window.innerWidth - 60 });
+        $("#divVouchersPayableGrid").css({ 'height': window.innerHeight - 450 });
+        grid.resize();
+
+        $("#dpVoucherDate").attr("readonly", true);
+
+        var dataSource = grid.dataSource;
+        dataSource.bind("sync", gridVouchersPayableDataSource_onSync);
+
+        $("#chkGLProcessorApproved").click(function () {
+            var result = UpdateGLProcessorApproval(this.checked, "PV");
+            if (result === "Success") {
+                $("#chkGLProcessorApproved").prop("disabled", true);
+            }
+            else {
+                $("#chkGLProcessorApproved").prop("checked", !this.checked);
+                myAlert("Approval failed. Please contact administrator.")
+            }
+        });
+
+        $("#chkReviewerApproved").click(function () {
+            var result = UpdateReviewerApproval(this.checked, "PV");
+            if (result === "Success") {
+                $("#chkReviewerApproved").prop("disabled", true);
+            }
+            else {
+                $("#chkReviewerApproved").prop("checked", !this.checked);
+                myAlert("Approval failed. Please contact administrator.")
+            }
+        });
+    });
+
+</script>
+
+

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Payroll Vouchers</title>
+    	<link href="@Url.Content("~/Content/kendo/2019.3.917/kendo.bootstrap-v4.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2019.3.917/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2019.3.917/angular.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2019.3.917/jszip.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2019.3.917/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2019.3.917/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Scripts/CoWS/common.js")"></script>    
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    @RenderSection("scripts", required: false)
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body class="k-content">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-between p-0">
+            <h1 class="navbar-brand d-flex align-items-center">Payroll Vouchers</h1>
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle">
+                <span class="k-icon k-i-menu"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="responsive-panel" class="nav navbar navbar-dark bg-light">
+        <ul id="menu">
+            <li>
+                @Html.ActionLink("Child Support", "Index", "ChildSupport")
+            </li>
+            <li>
+                @Html.ActionLink("Vouchers Payable", "Index", "VouchersPayable")
+            </li>
+            <li>
+                @Html.ActionLink("Payroll", "Index", "Payroll")
+            </li>
+            <li>
+                @Html.ActionLink("Reports", "Index", "Reports")
+            </li>
+            @if (User.IsInRole("App Admin"))
+            {
+                <li>
+                    @Html.ActionLink("Admin", "Index", "Admin")
+                </li>
+            }
+            @if (User.IsInRole("Security Admin"))
+            {
+                <li>
+                    Security
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Create New User", "CreateNewUser", "Security")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Modify Existing User", "ModifyUser", "Security")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Reset User Password", "ResetPassword", "Security")
+                        </li>
+                    </ul>
+                </li>
+            }
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+
+    <main>
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer text-center d-flex align-items-center">
+        <div class="container-fluid">
+            <p class="text-muted">Copyright © @DateTime.Now.Year City of Winston-Salem. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="myAlert">
+        <div id="divPrimaryMessage" class="clsPrimaryMessage"></div><br />
+        <div id="divSecondaryMessage" class="clsSecondaryMessage"></div>
+        <div id="divConfirmCancelButtons">
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnWindowConfirm")
+                .HtmlAttributes(new { type = "button", @class = "dialogButton", param = "confirm" })
+                .Content(content: "Confirm")
+            )
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnWindowCancel")
+                .HtmlAttributes(new { type = "button", @class = "dialogButton", param = "cancel" })
+                .Content(content: "Cancel")
+            )
+        </div>
+        <div id="divYesNoButtons">
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnWindowYes")
+                .HtmlAttributes(new { type = "button", @class = "dialogButton", param = "yes" })
+                .Content(content: "Yes")
+            )
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnWindowNo")
+                .HtmlAttributes(new { type = "button", @class = "dialogButton", param = "no" })
+                .Content(content: "No")
+            )
+        </div>
+        <div id="divOkButton">
+            @(Html.Kendo().Button()
+                .Name(componentName: "btnWindowOK")
+                .HtmlAttributes(new { type = "button", @class = "dialogButton", param = "ok" })
+                .Content(content: "OK")
+            )
+        </div>
+    </div>
+
+    <div id="confirmDialog">
+    </div>
+
+    <div id="xmlWindow" style="width:100%; height:100%; text-align:center">
+        <div style="display:inline-block; width:100%">
+            <div style="display:inline-block; width:49%; text-align:left">
+                <div>
+                    <label class="lblBold">File Description:</label><label id="FileDescription"></label>
+                </div>
+                <div>
+                    <label class="lblBold">File Date:</label><label id="FileDate"></label>
+                </div>
+            </div>
+            <div style="display:inline-block; width:49%; text-align:left; vertical-align:top">
+                <label class="lblBold">Date Posted:</label><label id="DatePosted"></label>
+            </div>
+        </div>
+        <hr />
+        <div style="display:inline-block; width:49%; height:85%">
+            <h5 style="text-align:left">Request</h5>
+            @Html.TextArea("SoapRequest", "", new { @readonly = "readonly", @class = "k-textbox" , style = "width: 100%; height:95%; " })
+        </div>
+        <div style="display:inline-block; width:49%; height:85%">
+            <h5 style="text-align:left">Response</h5>
+            @Html.TextArea("SoapResponse", "", new { @readonly = "readonly", @class = "k-textbox", style = "width: 100%; height:95%; " })
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+            $("#menu").kendoMenu();
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>
